@@ -1,61 +1,59 @@
-# SEBR 0916
+# The GA Mongoose Express Movie Database
 
-### Express / Mongoose API From Scratch
+This project creates a backend server using Express and Mongoose to manage a database of movies, actors, and reviews. The server will allow users to perform CRUD operations through defined endpoints. Movies have associated actors and reviews, and the relationships between these collections are maintained using foreign key references in MongoDB.
 
-## GAMEMDB - The GA Mongoose Express Movie Database (this name still needs work)
+## Getting Started
 
+1. **Clone the repository**
+2. **Install dependencies**: Run `npm init -y`, `npm install express mongoose cors nodemon dotenv`
+3. **Start the server**: Run `npm start`
+4. **Access routes**: Visit `http://localhost:3001` and test the endpoints.
 
-<img src="https://www.raisingedmonton.com/wp-content/uploads/2020/06/Depositphotos_175956732_l-2015.jpg"/>
+## API Endpoints
 
-For this lab we are going to create our own backend server! 
+### 1. Movies
 
-1) Run your necessary installations to get the necessary files and folders for Mongoose and Express, then mkdir and touch the additional ones you will need. Feel free to look back at previous lessons to see what these will entail. You are _not_ expected to memorize every step of the process so far!
+- **Get all movies**:  
+  Retrieves a list of all movies in the database.  
+  **Example**: `GET http://localhost:3001/movies`
 
-```sh
-npm init -y
-npm i ... ... ... ...
-mkdir ... ... ... ...
-touch ... ... ... ...
-```
+- **Get a specific movie**:  
+  Retrieves details of a specific movie by its ID.  
+  **Example**: `GET http://localhost:3001/movies/:id`
 
-_note:_ you may have to run npm i, mkdir, and touch multiple times through these steps to ensure you have everything created in the correct order
+### 2. Actors
 
-2) Update your Scripts block in your package.json so that your server is able to run on Nodemon (which, hopefully you've installed. If not, do it now!)
+- **Get all actors**:  
+  Retrieves a list of all actors in the database.  
+  **Example**: `GET http://localhost:3001/actors`
 
-3) In your config/db file, connect to a moviesDatabase using our standard Mongoose boilerplate
+- **Get a specific actor**:  
+  Retrieves details of a specific actor by their ID.  
+  **Example**: `GET http://localhost:3001/actors/:id`
 
-4) Create 3 schemas, Movies, Reviews and Actors. 
+### 3. Reviews
 
--  Your movies model should have a Title, Runtime, Rating, Year Released and a brief description. You can also include a link to a poster image for it, or try to upload an image file if you want a challenge! Think of what data types you'll want to use for each of these additional properties
+- **Get all reviews**:  
+  Retrieves a list of all reviews in the database.  
+  **Example**: `GET http://localhost:3001/reviews`
 
-- Your actors model should have properties for Name and Age, and one that says if they are Alive or not, plus any other properties you'll want to include. Again, try to add images using either method. What datatypes would we use for our other properties?
+- **Get a specific review**:  
+  Retrieves details of a specific review by its ID.  
+  **Example**: `GET http://localhost:3001/reviews/:id`
 
-- Reviews should be owned by movies and have a score and a comment. Your score can be 1-5, 1-10, or 0-100%, either way, it will need some kind of Constraint put on it to make sure it can only hold valid information.
+## Objectives
 
-- Use your Foreign Key references to connect your data! You will have the choice of which you want the parent and child to be. Should Actors own many movies? Or movies own any actors?
+- **Movie Collection**: Movies will have properties such as Title, Runtime, Rating, Year Released, and Description. Actors will be referenced in the movie schema via foreign keys.
 
-- Attach Reviews to movies using Foreign Key refs.
+- **Actor Collection**: Actors will have properties such as Name, Age, Alive status, and Biography.
 
-- Populate your db so that you have at least 5 of your parent data (movie or actor) and 10 of your child. Once you have Actors and Movies seeded, add at least 2 reviews to at least 3 of your movies.
+- **Review Collection**: Reviews will be connected to specific movies and include a Score, Comment, and Date.
 
-- Attach all of the necessary boilerplate to your express server.js file. Your landing page (localhost:3001/) should be the index list of your top parent data. We will want endpoints that have index and show routes for all three collections
+- **Data Population**: At least 5 movies and 10 actors will be seeded in the database. Each movie will have at least 2 reviews connected to it.
 
+## Technologies Used
 
-### Requirements
-
-- At least 3 Collections with a relation. You can have either Actor->Movie->Review, or you can have Movie as a parent with both Actor and Review children. The choice is yours!
-- Index and Show Routes for each of these routes
-
-
-### Bonus I
-- AAU I want to sort my reviews by ascending or descending order
-- AAU I want to sort my movies by newest or oldest
-- AAU I want an error message to display if I search for an Actor, Movie, or Review with an incorrect ID
-- AAU I want to Create, Update, and Delete my Actors, Movies, and Reviews using a query.js file
-
-
-### Bonus II
-
-- AAU I want a Front End page that will allow me to pull, log, and render this information on screen using the Axios library to a url of localhost:3001 with all of our respective routes and endpoints
-- As A Picky and Opinionated User I also want this page to have some style to it!
-
+- **Node.js**: Backend runtime environment.
+- **Express.js**: Web framework for handling routes and server logic.
+- **Mongoose**: ODM for MongoDB to manage schemas and collections.
+- **MongoDB**: Database to store movie, actor, and review data.
